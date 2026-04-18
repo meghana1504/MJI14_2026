@@ -1,4 +1,4 @@
-package DSA;
+package DSA.DataStructureImpl;
 
 public class A0_ArrayImpl {
     private int size;
