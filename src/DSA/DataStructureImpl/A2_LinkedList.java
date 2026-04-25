@@ -1,6 +1,7 @@
 package DSA.DataStructureImpl;
 
 // TODO : To refactor while revisiting (edge cases)
+
 public class A2_LinkedList {
     public static void main(String[] args) {
         A2_LinkedList myList = new A2_LinkedList();
