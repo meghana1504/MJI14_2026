@@ -1,4 +1,4 @@
-package DSA.ProblemSolving.Math;
+package DSA.ProblemSolving.A_Math;
 
 public class LC_1037_ValidBoomerang {
 

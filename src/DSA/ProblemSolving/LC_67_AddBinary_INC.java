@@ -1,6 +1,6 @@
 package DSA.ProblemSolving;
 
-public class LC_67_AddBinary {
+public class LC_67_AddBinary_INC {
     public static void main(String[] args) {
         System.out.println(addBinary("100","100"));
     }
@@ -38,7 +38,7 @@ public class LC_67_AddBinary {
 
             if(a.charAt(i)!=' ' && b.charAt(i)!=' '){
                 if(i==0 && finLen>1){
-                    
+
 
                 }
                else if(a.charAt(i)=='0' && b.charAt(i)=='0'){

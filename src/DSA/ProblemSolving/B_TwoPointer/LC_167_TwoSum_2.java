@@ -1,4 +1,4 @@
-package DSA.ProblemSolving.TwoPointer;
+package DSA.ProblemSolving.B_TwoPointer;
 import java.util.Arrays;
 public class LC_167_TwoSum_2 {
     public static void main(String args[]){

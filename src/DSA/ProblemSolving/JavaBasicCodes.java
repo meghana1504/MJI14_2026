@@ -41,7 +41,7 @@ public class JavaBasicCodes {
 
     public void swapTwoNumber(int a, int b){
         // 5 6
-        // a = 11
+        // a = a + b = 11
         // b = a - b = 11 - 6 = 5
         // a = a - b = 11 - 5 = 6
         a = a+b;

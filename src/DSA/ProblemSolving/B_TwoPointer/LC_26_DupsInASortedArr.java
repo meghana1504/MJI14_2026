@@ -1,6 +1,4 @@
-package DSA.ProblemSolving.TwoPointer;
-
-import java.util.Arrays;
+package DSA.ProblemSolving.B_TwoPointer;
 
 public class LC_26_DupsInASortedArr {
     public static void main(String[] args) {

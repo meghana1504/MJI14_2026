@@ -1,6 +1,5 @@
-package DSA.ProblemSolving.Math;
+package DSA.ProblemSolving.A_Math;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class lc_593_ValidSquare {
