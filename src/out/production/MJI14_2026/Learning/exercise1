@@ -1,0 +1,75 @@
+🧩 Exercise: Smart Banking Simulator
+🎯 Objective
+
+Create a simple console-based banking system where a user can perform operations like deposit, withdraw, check balance, and simulate interest.
+
+📋 Requirements
+1. Variables & Data Types
+Store:
+Account holder name (String)
+Account balance (double)
+Account type (char → 'S' for Savings, 'C' for Current)
+Number of transactions (int)
+
+2. Operators
+Use:
+Arithmetic (+, -, *)
+Relational (>, <, ==)
+Logical (&&, ||)
+3. Control Flow (if-else, switch)
+Show a menu:
+1. Deposit
+2. Withdraw
+3. Check Balance
+4. Add Interest
+5. Exit
+
+Use:
+switch → to handle menu choice
+if-else → for conditions like:
+insufficient balance
+account type logic
+
+4. Loops
+Use a do-while loop to keep showing the menu until user exits
+Use a for loop to simulate transaction history (e.g., print last N dummy transactions)
+Use a while loop somewhere meaningful (e.g., retry invalid input)
+5. Functions / Methods
+
+Create separate methods:
+
+deposit(double balance, double amount)
+withdraw(double balance, double amount)
+addInterest(double balance, char accountType)
+printTransactions(int count)
+⚙️ Functional Rules
+💰 Deposit
+Amount must be > 0
+💸 Withdraw
+Cannot withdraw more than balance
+Minimum balance rule:
+Savings → must keep ₹500
+Current → must keep ₹1000
+📈 Interest
+Only for Savings accounts
+Interest = 5% of balance
+📊 Transactions
+Increment transaction count each time
+
+Print dummy logs like:
+
+Transaction 1: Deposit
+Transaction 2: Withdraw
+⭐ Bonus Challenges (to push yourself)
+Add input validation
+Use method overloading
+Store multiple accounts using arrays
+Add a login PIN system
+🧠 What This Tests
+Topic	Where Used
+Variables & Data Types	Account details
+Operators	Balance calculations
+if-else	Validation & rules
+switch	Menu handling
+Loops	Menu + transaction printing
+Functions	Modular operations

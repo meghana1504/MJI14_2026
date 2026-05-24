@@ -18,7 +18,7 @@ public class JavaBasicCodes {
             System.out.println(code.factorial(20));
             System.out.println(code.factorialIt(20));
             System.out.println(code.addTwoComplexNos(5,6,8,19));
-            System.out.println(code.nthFibbonaci(7));
+            System.out.println(code.nthFibbonaci(4));
             System.out.println(code.sumOfFibbonacci(7));
             System.out.println(Arrays.toString(code.sumOfSubbArr(new int[]{1, 2, 3, 4, 5}, 1)));
             code.mergeUnsortedArrays(new int[]{2, 0, 1}, new int[]{4, -1, 5, 1});
@@ -79,11 +79,9 @@ public class JavaBasicCodes {
 
     // 0 1 1 2 3 5 8 13 21
     public int nthFibbonaci(int n) {
-        int fib;
         if (n <= 1)
             return n;
-        fib = nthFibbonaci(n - 1) + nthFibbonaci(n - 2);
-        return fib;
+        return nthFibbonaci(n - 1) + nthFibbonaci(n - 2);
     }
     public int sumOfFibbonacci(int n){
         int a=0; int b=1; int curr=0;
