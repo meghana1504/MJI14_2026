@@ -1336,3 +1336,95 @@ public class AdvancedJvmConceptsStudyGuide {
     }
 }
 
+/*
+===============================================================================
+                    JAVA MEMORY MODEL — GROUPED TABLE
+===============================================================================
+
+HEAP MEMORY
+-------------
+- Object instances
+- Array objects
+- String objects created using 'new'
+- Instance variables
+- Primitive fields inside objects
+- Reference fields inside objects
+- Actual referenced objects
+- Array elements
+- Object members inside arrays
+- Lambda objects
+- Thread objects
+- Enum objects
+- Boxed primitives (Integer, Double, etc.)
+
+STRING CONSTANT POOL (sub-area of Heap Memory)
+------------------------------------------------
+- String literals
+- Interned Strings
+- Reused String constants
+
+STACK MEMORY
+--------------
+- Method call stack frames
+- Local primitive variables
+- Local object references
+- Method parameters
+- Return addresses
+- Partial/intermediate calculations
+- 'this' reference
+- final local variables
+- Reference variables
+
+METHOD AREA / METASPACE
+------------------------
+- Class metadata
+- Class structure information
+- Static variables
+- Static methods bytecode
+- Non-static methods bytecode
+- Runtime Constant Pool
+- Method definitions
+- Constructor definitions
+- Interface metadata
+- final static variables
+- Class-level constants
+
+RUNTIME CONSTANT POOL (sub-area of Method Area / Metaspace)
+-------------------------------------------------------------
+- Compile-time constants
+- Symbolic references
+- Class constants
+- Method references
+- Field references
+- Literal constants
+
+PC REGISTER
+-------------
+- Address of current JVM instruction being executed
+
+NATIVE METHOD STACK
+--------------------
+- Native method execution data
+- Native library calls
+- JNI-related execution frames
+
+===============================================================================
+
+
+IMPORTANT RULES
+===============================================================================
+
+1. Objects ALWAYS live in Heap.
+2. References usually live in Stack.
+3. Static members live in Method Area.
+4. Method code is stored in Method Area, NOT Stack.
+5. Stack stores execution state, not actual objects.
+6. Each thread has:
+       -> its own Stack
+       -> its own PC Register
+       -> its own Native Method Stack
+7. Heap and Method Area are shared among threads.
+
+===============================================================================
+*/
+
