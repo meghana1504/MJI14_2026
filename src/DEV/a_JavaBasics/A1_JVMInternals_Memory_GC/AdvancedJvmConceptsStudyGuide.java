@@ -1,4 +1,4 @@
-package DEV.B_JVMInternals_Memory_GC;
+package DEV.a_JavaBasics.A1_JVMInternals_Memory_GC;
 
 public class AdvancedJvmConceptsStudyGuide {
 
