@@ -84,5 +84,21 @@ public class JavaGenerics {
             // method body
             }
         * */
+
+    /*
+     * ===========================================================================
+     * ----------- TYPE ERASURE ? ----------
+     * ===========================================================================
+     * - At Runtime >
+            ArrayList<Integer>
+            ArrayList<String>
+     * - Both become
+            ArrayList
+     * - and store elements as Object references.
+     * - If Java allowed:
+     *      ArrayList<int>
+     * - the JVM would need a completely different implementation to store raw primitive values. The original generics design avoided that complexity.
+     *
+    * */
     }
 }

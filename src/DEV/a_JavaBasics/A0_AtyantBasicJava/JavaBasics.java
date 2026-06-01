@@ -1,4 +1,4 @@
-package DEV.a_JavaBasics;
+package DEV.a_JavaBasics.A0_AtyantBasicJava;
 
 public class JavaBasics {
 
@@ -258,13 +258,17 @@ public class JavaBasics {
         // ---------------------------------------------------------
 
         /*
-         * Autoboxing:
+         * Autoboxing: Automatically putting the smaller object into BIG Wrapper / BOX
          * Automatic conversion from primitive -> wrapper object.
          */
 
-        Integer boxed = 10; // compiler converts to Integer.valueOf(10)
+        Integer no = 10; // compiler converts to Integer.valueOf(10)
 
-        System.out.println("Autoboxed Integer = " + boxed);
+        System.out.println("Autoboxed Integer = " + no);
+
+        // Java internally does :
+        int prim=0;
+        System.out.println(Integer.valueOf(prim));
 
 
         // ---------------------------------------------------------
@@ -272,14 +276,17 @@ public class JavaBasics {
         // ---------------------------------------------------------
 
         /*
-         * Unboxing:
+         * Unboxing: UN-Boxing, Obviously taking smaller thing out of the Wrapper/BOX
          * Automatic conversion from wrapper -> primitive.
          */
 
-        int primitive = boxed; // compiler converts to boxed.intValue()
+        int primitive = no; // compiler converts to boxed.intValue()
 
         System.out.println("Unboxed int = " + primitive);
 
+        Integer wrap=10;
+        // Java internally does :
+        System.out.println(wrap.intValue());
 
         // ---------------------------------------------------------
         // IMPORTANT PITFALL: NullPointerException
