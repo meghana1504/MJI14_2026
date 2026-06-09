@@ -8,7 +8,7 @@ import java.util.*;
 // Comparator - compare(Object obj1, Object obj2)
 
 // ----------------------- Comparator ----------------------
-// We implement Comparator and pass our class ka object to list.sort() method, to sort it in desired way- like asc or dsc
+// We implement Comparator with our ownComparator and pass our ownComparator ka object to list.sort() method, to sort it in desired way- like asc or dsc
 // or based on certain parameter value - like age, id in case of custom classes
 // I tell list's sort function to sort the list how I want using myComparator class where I implement compare() method in the way I want
 // if i do o1-o2 - ASC
