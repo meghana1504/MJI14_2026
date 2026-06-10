@@ -1,5 +1,7 @@
 package DEV.a_JavaBasics.A5_JavaCollections;
 
+import java.util.Objects;
+
 public class B0_StudentMarks implements Comparable<B0_StudentMarks>{
     // When a custom class implements Comparable interface, it means the class has a strategy to compare its elements and sort its own objects
     private int maths;
@@ -30,5 +32,19 @@ public class B0_StudentMarks implements Comparable<B0_StudentMarks>{
     public int compareTo(B0_StudentMarks o) {
         System.out.println("B0_StudentMarks::CompareTo() is called");
         return o.getMaths()-this.getMaths(); // since we want top 3 starting from the top scorer
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (this.getClass() != o.getClass()) return false;
+        B0_StudentMarks that = (B0_StudentMarks) o;
+        return this.maths == that.maths && this.physics == that.physics;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(maths, physics);
     }
 }

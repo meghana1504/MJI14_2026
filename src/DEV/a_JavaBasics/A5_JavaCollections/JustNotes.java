@@ -1,6 +1,7 @@
 package DEV.a_JavaBasics.A5_JavaCollections;
 // JUST NOTES
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class JustNotes {
@@ -304,9 +305,9 @@ public static void main(String[] args) {
     }
     System.out.println("top 3 Maths scorers "+ top3);
 
-// ==============================================================================================================================
-//  ============= [ PART 8  ] - Sets and its implementations - HashSet  ================
-// ==============================================================================================================================
+// ====================================================================================================================================
+//  ============= [ PART 8  ] - Sets and its implementations - HashSet, LinkedHashSet, hashcode and equals importance  ================
+// ====================================================================================================================================
 /*
 * [I] Collection --E--> [I] [SET] --I--> [C] HashSet --E--> [C] LinkedHashSet
                            |
@@ -314,26 +315,267 @@ public static void main(String[] args) {
                            |
                            +--I--> [C] EnumSet
 *
+* .CONTAINS(E) - true or false
 * Methods that SET interface provides --> Mostly Mathematical set operations
-    • a.containsAll(b) (subset)
-    • a.addAll(b) (union)
-    • a.removeAll(b) (difference)
-    • a.retainAll(b) (intersection)
-    • a.clear() (empty set)
+    • a.containsAll(b) (subset) ------- boolean - Returns true if this set contains all the elements of the specified collection.
+                                                  If the specified collection is also a set, this method returns true if it is a subset of this set.
+    • a.addAll(b) (union) ------------- boolean - Adds all of the elements in the specified collection to this set if they're not already present
+    • a.removeAll(b) (difference) ----- boolean - Removes from this set all of its elements that are contained in the specified collection
+    • a.retainAll(b) (intersection) --- boolean - Retains only the elements in this set that are contained in the specified collection
+    • a.clear() (empty set) ----------- void ---- Removes all of the elements from this set, set becomes empty
 *
 * */
+
+    System.out.println("\nPerforming set operations... ");
+    Set<Integer> set1 = new HashSet<>();
+    set1.add(1);
+    set1.add(3);
+    set1.add(2);
+    set1.add(5);
+
+    Set<Integer> set2 = new HashSet<>();
+    set2.add(11);
+    set2.add(3);
+    set2.add(22);
+    set2.add(50);
+    set2.add(5);
+
+    System.out.println(set1 +" " + set2);
+    System.out.println("set1.containsAll(set2)> "+set1.containsAll(set2)+ "" + set1 + set2 );
+    System.out.println("set1.addAll(set2)> "+set1.addAll(set2) + set1 + set2);
+    System.out.println("set1.removeAll(set2)> "+set1.removeAll(set2)+ set1+set2);
+    System.out.println("set1.retainAll(set2)> "+set1.retainAll(set2)+ set1+set2);
+    set1.clear();
+    System.out.println("Set1: "+set1+ "set2: "+set2);
+
+    System.out.println("\nNormal set does not maintain sorting order .. ");
     Set<Integer> set = new HashSet<>();
     set.add(10);
     set.add(30);
     set.add(20);
     set.add(10);
+    set.add(90);
     System.out.println(set);
-    set.remove(10);
-    System.out.println(set);
-    set.clear();
-    System.out.println(set);
+//    set.remove(10);
+//    System.out.println(set);
+
+    for(int x: set)
+        System.out.print(x+" ");
+
+    System.out.println("\nUse hashset when insertion order does not matter for you ");
+
+    // LinkedHashSet is used when we want to preserve the order of insertion
+    // HashSet which maintains the linkedList BTS
+    // SLIGHTLY slower than HashSet
+
+    System.out.println("\nLinkedHashSet maintains sorting order .. ");
+    Set<Integer> lhset = new LinkedHashSet<>();
+    lhset.add(10);
+    lhset.add(30);
+    lhset.add(20);
+    lhset.add(10);
+    lhset.add(90);
+    System.out.println(lhset);
+
+    for(int x: lhset)
+        System.out.print(x+" ");
+
+    System.out.println("\n\nNow we will make set of B0_StudentMarks and see what happens");
+    Set<B0_StudentMarks> smset = new HashSet<>(stMarks);
+    smset.add(new B0_StudentMarks(90,80)); // This entry is already present in the set, but it will get added AGAIN if we do not override hashcode and equals in class StudentMarks
+    System.out.println(smset);
+    System.out.println("Check if B0_StudentMarks(90,80) is present in smset "+smset.contains(new B0_StudentMarks(90,80)));
+    // Although the object with SAME values is present in our set, it returns FALSE, why? hashcode() thing
+    /*
+    * When we insert element into a HashSet, hashcode of that element is generated, it gets mapped to a bucket
+    * Checks elements from the buckets, (LL or BBT),
+    * We have to override hashcode() method for the class whose objects which we are comparing, otherwise it generates new hashcode for every object every time
+    * Because when we want to add new B0_StudentMarks(90,80) to our hashset, it treats it as a new object and it does not match with any current object, so it thinks it is unique
+    * Set ko kaise pta chalega do objects same hai,? uske liye equals and hashcode override krna hi pdega
+    * First checks hashcode, then equals
+    *
+    * See again class : B0_StudentMarks : equals() and override() methods
+    *
+    * */
+
+// ====================================================================================================================================
+//  ============= [ PART 9 ] - SortedSet Interface, NavigableSet Interface , TreeSet ================
+// ====================================================================================================================================
+
+    /*
+    * // SortedSet Interface //
+    * Balanced binary serch tree is used BTS
+    * Eelements will be sorted with natural or Total ordering (if passed a comparator)
+    * E first()
+    * E last()
+    *
+    *
+    * // NavigableSet Interface //
+    • Extends the SortedSet interface with navigation methods to find the closest
+    matches for specific search targets.
+    • By navigation, we mean operations that require searching for elements in the
+    navigable set.
+    • In the absence of elements, these operations return null rather than throw a
+    NoSuchElementException.
+    • In addition to the methods of the SortedSet interface, the Navigable Set
+    interface adds the following new methods:
+    // First-last elements          // Closest-matches
+    • E pollFirst()                 • E ceiling(E e) • E higher(E e)
+    • E pollLast()                  • E floor(E e) • E lower(E e)
+    *
+    * USED IN INTERVAL Problems
+    *
+    *
+    * */
+
+    /*
+    ---------- Treeset ----------
+    * - Naturally adds elements in the sorted order
+    * - Just like the Priority Queue
+    * - It also calls B0_StudentMarks::CompareTo(), while the elements are getting added
+    * - Agar nahi hota defined to classCastException, obviously
+    * - Hence it is sorted on maths score
+    *
+    * */
+    System.out.println("\nTreeSet starts");
+    Set<B0_StudentMarks> tst = new TreeSet<>(stMarks); // we can also pass comparator to sort based on physics score
+    System.out.println("\nTreeset prints elements in a sorted order ");
+    System.out.println(tst);
+
+    System.out.println("\nCreating a Treeset of Integer > ");
+    NavigableSet<Integer> set4 = new TreeSet<>();
+    set4.add(9);
+    set4.add(8);
+    set4.add(3);
+    set4.add(2);
+    set4.add(5);
+    System.out.println("Set4: "+set4);
+    System.out.println("set4.floor(4) "+set4.floor(4)); // floor of 4, element just less than or equal to 4
+    System.out.println("set4.ceiling(4) "+set4.ceiling(4)); // floor of 4, element just greater than or equal to 4
+    System.out.println("set4.lower(4) "+set4.lower(4)); // element strictly next lower than 4
+    System.out.println("set4.higher(4) "+set4.higher(4)); // element strictly next higher than 4
+
+// ====================================================================================================================================
+//  ============= [ PART 10 ] - Map interface ================
+// ====================================================================================================================================
+
+    /*
+    [I] Map --I--> [C] HashMap --E--> [C] LinkedHashMap
+        |
+        +--E--> [I] [SortedMap]
+                        --E--> [I] [NavigableMap] --I--> [C] TreeMap
+        |
+        +------------------------I--> [C] Hashtable --E--> [C] Properties
+        |
+        +--I--> [C] ConcurrentHashMap | [C] ConcurrentSkipListMap | [C] WeakHashMap | [C] IdentityHashMap | [C] EnumMap
+
+    - Map.Entry interface hai for Map traversal
+    - Map has <Key,Value> pairs,
+    - Duplicate keys are not allowed, keys are unique, values can be duplicate
+    - Both keys and values should be Objects/Wrapper classes, No promitive types
+    * */
+
+    /*
+    * Map Interface Methods :
+    * Object put (K key, V value)
+    * Object get (Object key)
+    * Object remove (Object key)
+    * boolean containsKey(Object key)
+    * boolean containsValue(Object value)
+    * int size()
+    * boolean isEmpty()
+    *
+    * BULK METHODS
+    * void putAll()
+    * Set<K> keySet()
+    * Collection <V> values()
+    * Set<Map.Entry<K,V>> entrySet()
+    *
+    * Methods of interface Entry
+    * K getKey();
+    * V getValue();
+    * V setValue(V value);
+    *
+    * HashMap v/s HashTable
+    * - HashMap is not thread safe, HashTable is
+    * - HashMap permits one null key, HashTable does not (only non-null key and values)
+    * - Obv HashMaps are faster
+    *
+    * Make sure hashcode() and equals() are implemented in the custom classes, jiska HashMap bana rhe hai
+    *
+    * LinkedHashMap preserves sorting order, maintains doubly linked list
+    * But HashMap is a natural choice if sorting is not an issue
+    *
+    *
+    *
+    * */
+
+    System.out.println("\nHashMap implementation");
+    Map<String, Integer> map = new HashMap<>();
+    map.put("Pupla", 45);
+    map.put("Pupli", 80);
+    map.put("Vaibhu", 55);
+    map.put("Meghana", 10);
+
+    System.out.println(map.get("Pupli"));
+    System.out.println(map.get("Mama")); // This key is not present in the maps, returns null
+    // But this is not good since if it is a custom class and we call a method on it, itll be null.getSomethin() - NULLPointerException
+    // So we have different null ptr exc safe method . see below
+    System.out.println(map.getOrDefault("Mama",0));
+    System.out.println(map.containsKey("Kaka")); // should be false
+
+    // Adjacency list demo - Map<Integer, List<Integer> > - use of adj.computeIfAbsent(1, f->new ArrayList<>()).add(2);
+
+    Set<Map.Entry<String, Integer>> entrySet = map.entrySet();
+    for( Map.Entry<String, Integer> entry: entrySet)
+        System.out.println(entry.getKey()+" <key and value> "+entry.getValue());
+
+    for(String key: map.keySet())
+        System.out.println("key: "+key+" value: "+map.get(key));
+
+    /*
+    * SortedMap - Keys will be sorted ~ SortedSet jaise ops [Order defined with Natural or Total ordering - Comparator]
+    * - K firstKey()
+    * - k lastKey()
+    *
+    * NavigableMap - Find closest matches for specific entries ~ NavigableSet jaise ops
+    * - ceilingEntry(K key) / K ceilingKey(K key)
+    * - floorEntry(K key)   / K floorKey (K key)
+    * - higherEntry(K key)  / K higherKey(K key)
+    * - lowerEntry(K key )  / K lowerKey(K key)
+    *
+    *
+    */
+
+    /*
+    *
+    * TreeMap - Concrete class - Impl NavigableMap - SortedMap
+    *
+    * */
+    System.out.println("\nTreeMap methods.. ");
+    NavigableMap<Integer, String> tmap = new TreeMap<>((a,b)->b-a); // passing our own comparator to sort it DESC order
+    tmap.put(9,"Megh");
+    tmap.put(2,"Man");
+    tmap.put(1,"Nis");
+    tmap.put(4,"Ish");
+
+    for(Integer key: tmap.keySet())
+        System.out.println("key: "+key+" value: "+tmap.get(key));
+
+    System.out.println(tmap.pollFirstEntry());
+    System.out.println("Key just greater than 3 "+tmap.ceilingKey(3));
+    System.out.println("Corresponding value of the key which is just greater than 3 "+tmap.ceilingEntry(3));
 
 
+    // Some more imp methods MISC
+    // For sorting
+    // Arrays.sort(int[] arr)
+    // Collections.sort(ArrayList)
+    // Collections.sort(ArrayList, )
+    //
+    Collections.sort(lk, Collections.reverseOrder()); // aisa bhi kr skte hai
+    // Arrays.asList(Integer[] arr);
+    System.out.println(Collections.binarySearch(lk,10));
 }
 }
 
