@@ -1,8 +1,6 @@
 package DEV.a_JavaBasics.A2_GenericsInJava;
 
-import java.util.ArrayList;
-
-public class GenericBox <T> { // I am not teliing you at runtime which object type I want to hold, I will tell you while creating the object
+public class GenericBox <T> { // Me to JVM : I am not telLing you at compile time which object type I want to hold, I will tell you while creating the object
     T value;
 
     GenericBox(T val){
@@ -14,5 +12,22 @@ public class GenericBox <T> { // I am not teliing you at runtime which object ty
     }
 }
 
+/*
+SYNTAX HELP
+
+// We have box class which can ONLY integer values
+public class Box {
+    int value;
+
+    Box( int val ){
+        this.value = val;
+    }
+
+    public int getValue(){
+        return value;
+    }
+}
+
+* */
 // SYNTAX HELP
 // ArrayList<Integer> myNums = new ArrayList<Integer>();

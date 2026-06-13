@@ -99,7 +99,7 @@ public class AdvancedJvmConceptsStudyGuide {
             int r2 = x;
         }
         }
-    * Due to the volatile keywork, the local cache value when updated, is flushed to the shared cache, so even it updates x=1, and reader thread has updated value of x
+    * Due to the volatile keyword, the local cache value when updated, is flushed to the shared cache, so even shared cache updates x=1, and reader thread has updated value of x
     *
     * JMM rules
     *
@@ -130,11 +130,11 @@ public class AdvancedJvmConceptsStudyGuide {
          * | +----------------------------+       +--------------------------------------+ |
          * | | STACK MEMORY               |       | HEAP MEMORY                          | |
          * | |----------------------------|       |--------------------------------------| |
-         * | | Method Frames              |       | Young Generation                     | |
+         * | | Method Frames (ret addrs)  |       | Young Generation                     | |
          * | | Local Variables            |       |  - Eden                              | |
          * | | Primitive Values           |       |  - Survivor S0                       | |
-         * | | Object References          |       |  - Survivor S1                       | |
-         * | | Return Addresses           |       |                                      | |
+         * | | Object References  --------|------>|  - Survivor S1                       | |
+         * | |                            |       |                                      | |
          * | +----------------------------+       | Old Generation                       | |
          * |                                      |  - Long-lived Objects                | |
          * |                                      |                                      | |
@@ -386,7 +386,8 @@ public class AdvancedJvmConceptsStudyGuide {
          */
 
 
-        // Request GC (not guaranteed)
+        // Request GC (not guaranteed),  (JVM) decides when the time is right to reclaim memory
+        // Good article : https://medium.com/@AlexanderObregon/requesting-garbage-collection-with-system-gc-in-java-2dcb802ce0f3
         System.gc();
     }
 
@@ -437,8 +438,8 @@ public class AdvancedJvmConceptsStudyGuide {
          * |  YOUNG GEN        OLD GEN                      |
          * |                                                |
          * |  Eden             Long-lived objects           |
-         * |  Survivor S0                                      |
-         * |  Survivor S1                                      |
+         * |  Survivor S0                                   |
+         * |  Survivor S1                                   |
          * |                                                |
          * +------------------------------------------------+
          */
@@ -450,11 +451,8 @@ public class AdvancedJvmConceptsStudyGuide {
 
         /*
          * MOST objects die young.
-         *
          * Therefore:
-         *
          * New objects go to Young Generation.
-         *
          * Surviving objects eventually move to Old Generation.
          */
 
@@ -809,12 +807,23 @@ public class AdvancedJvmConceptsStudyGuide {
         // ------------------------------------------------------------------------
 
         /*
-         * Loads core Java classes:
-         *
+         * First class loader that starts working
+         * Loads most basic/ core Java classes
          * java.lang.*
          * java.util.*
+         * located in JAVA_HOME/lib directory
+         *
          */
 
+        // ------------------------------------------------------------------------
+        // EXTENSION CLASSLOADER
+        // ------------------------------------------------------------------------
+
+        /*
+         * Loads additional classes which extend the functionality of Java
+         * Inside <JAVA_HOME>/lib/ext
+         * Eg; DB/ XML files vale classes
+         */
 
         // ------------------------------------------------------------------------
         // APPLICATION CLASSLOADER
@@ -822,9 +831,10 @@ public class AdvancedJvmConceptsStudyGuide {
 
         /*
          * Loads application classes from classpath.
+         * The classes created by developers are loaded here
          */
 
-
+        // GOOD ARTICLE : https://medium.com/@fullstacktips/what-are-class-loaders-and-different-types-of-class-loaders-in-java-e12f05821bc2
         ClassLoader loader = AdvancedJvmConceptsStudyGuide.class.getClassLoader();
 
         System.out.println("Current ClassLoader = " + loader);
@@ -836,7 +846,6 @@ public class AdvancedJvmConceptsStudyGuide {
 
         /*
          * Child classloader asks parent first.
-         *
          * This prevents fake core Java classes.
          */
 
@@ -867,7 +876,6 @@ public class AdvancedJvmConceptsStudyGuide {
         /*
          * Before Java 8:
          * JVM used PERMGEN.
-         *
          * Java 8 replaced it with METASPACE.
          */
 
@@ -933,7 +941,6 @@ public class AdvancedJvmConceptsStudyGuide {
 
         /*
          * JIT = Just-In-Time Compiler
-         *
          * Converts bytecode into native machine code at runtime.
          */
 
@@ -944,7 +951,6 @@ public class AdvancedJvmConceptsStudyGuide {
 
         /*
          * Java bytecode would be interpreted line-by-line.
-         *
          * Slow.
          */
 
@@ -955,7 +961,6 @@ public class AdvancedJvmConceptsStudyGuide {
 
         /*
          * Frequently executed code becomes compiled native code.
-         *
          * Faster execution.
          */
 
@@ -966,7 +971,6 @@ public class AdvancedJvmConceptsStudyGuide {
 
         /*
          * JVM identifies HOT methods.
-         *
          * Hot methods = frequently executed methods.
          */
 
@@ -1065,7 +1069,6 @@ public class AdvancedJvmConceptsStudyGuide {
 
         /*
          * Shenandoah:
-         *
          * - Concurrent compaction
          * - Concurrent evacuation
          * - Low latency focused
@@ -1078,11 +1081,9 @@ public class AdvancedJvmConceptsStudyGuide {
 
         /*
          * Traditional collectors:
-         *
          * App threads STOP during major collection.
          *
          * ZGC/Shenandoah:
-         *
          * Much work done concurrently while app runs.
          */
 

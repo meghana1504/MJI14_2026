@@ -129,6 +129,7 @@ public class JavaBasics {
         int overflowed = maxInt + 1;
 
         System.out.println("After overflow = " + overflowed);
+        // this will be  -(maxInt+1) -- imagine a numberline from -2147483648 to 2147483647, but circular
 
 
         // ---------------------------------------------------------
@@ -262,7 +263,7 @@ public class JavaBasics {
          * Automatic conversion from primitive -> wrapper object.
          */
 
-        Integer no = 10; // compiler converts to Integer.valueOf(10)
+        Integer no = 10; // compiler converts this to Integer.valueOf(10)
 
         System.out.println("Autoboxed Integer = " + no);
 
@@ -280,7 +281,7 @@ public class JavaBasics {
          * Automatic conversion from wrapper -> primitive.
          */
 
-        int primitive = no; // compiler converts to boxed.intValue()
+        int primitive = no; // compiler converts this to boxed.intValue()
 
         System.out.println("Unboxed int = " + primitive);
 
@@ -512,7 +513,7 @@ public class JavaBasics {
         // Content comparison
         System.out.println("s1.equals(s3) ? " + s1.equals(s3));
 
-        // Another String with same value created on Heap, creates a nw object
+        // Another String with same value created on Heap, creates a new object
         String s4 = new String("java");
         System.out.println("s3 == s4 ? " + (s3 == s4));
 
@@ -697,7 +698,11 @@ public class JavaBasics {
         set.add(s2);
 
         // Only one object stored because equals/hashCode are correct
+        // Objects are not being treated as different objects because hashcode is coming out to be the same due to overridden hashcode method
         System.out.println("HashSet size = " + set.size());
+        System.out.println("Hashset contains --> ");
+       for(Student student : set)
+           System.out.println("Id: "+student.id+" Name: "+student.name);
     }
 
 
@@ -715,6 +720,10 @@ public class JavaBasics {
          * Enums are type-safe.
          *
          * Better than using plain constants.
+         * - 1. Type Safety - for eg OK_status=1 kr dia, but in code I did status==3 by mistake, but enums me we are restricted to Status s = Status.NEW;
+         * - 2. More readable - Related constants can be grouped together - like, order status, user roles etc
+         * - 3. Enum methods like Day.values(), valueOf(), ordinal()
+         * - 4. They can also contain variables, constructors and methods
          */
 
         Day today = Day.SUNDAY;
@@ -753,6 +762,7 @@ public class JavaBasics {
         for (Day day : Day.values()) {
             System.out.println(day);
         }
+
     }
 
 
@@ -785,7 +795,7 @@ public class JavaBasics {
 
             Student other = (Student) obj;
 
-            return id == other.id && java.util.Objects.equals(name, other.name);
+            return id == other.id && name.equals(other.name); // && java.util.Objects.equals(name, other.name)
         }
 
         @Override

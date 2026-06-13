@@ -45,7 +45,7 @@ public class ExceptionHandler {
     * -> We do not do catch(Error e) like exceptions
     * -> Error usually indicates that the application can not recover
     * -> OOM or StackOverflowError etc
-    * -> takes us to the java clas: VirtualMachineError : exception which happen when JVM runs out of resources
+    * -> takes us to the java clas: VirtualMachineError : error which happens when JVM runs out of resources
     *
     * -> EXCEPTION
     * -> Represents conditions that applications are expected to handle.

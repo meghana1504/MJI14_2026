@@ -46,7 +46,7 @@ public class JustNotes {
 
 * */
 
-// Collection extends Iterable, and all these Interfaced extend Collection, hence they also have to implement Iterable interface
+// Collection extends Iterable, and all these Interfaces extend Collection, hence they also have to implement Iterable interface
 // What we have did in A0_GenericList
 
 // ==============================================================================================================================
@@ -55,8 +55,7 @@ public class JustNotes {
 
     /*
     List Interface:
-        ⚫ Lists are collections that maintain their elements in order and can contain
-        duplicates.
+        ⚫ Lists are collections that maintain their elements in order and can contain duplicates.
         ⚫ The elements in a list are ordered.
         ⚫ Each element are position based, starting from index 0.
     List Methods:
@@ -174,7 +173,7 @@ public static void main(String[] args) {
 // ==============================================================================================================================
     /*
     *
-    | Method Purpose  | throws exception     | Doesnt throw Exc (Better)     |
+    | Method Purpose  | throws exception     | Doesn't throw Exc (Better)    |
     | --------------- | -------------------- | ----------------------------- |
     | To add elements | boolean add(E e)     | boolean offer (E e)           |
     | Remove elements | E remove()           | E poll()                      |
