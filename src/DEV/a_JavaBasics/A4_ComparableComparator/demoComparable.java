@@ -67,7 +67,7 @@ class Student1 implements Comparable<Student1>{
 *
 * Use Comparable for Custom classes, and define compareTo() method in that class
 *
-* For system defined classes, like Integer, they have already implemented compareTo() method by implementing Comparable interface an we cant change Integer ka compareTo() method
+* For system defined classes, like Integer, they have already implemented compareTo() method by implementing Comparable interface and we cant change Integer ka compareTo() method
 * So, for those, create customComparator and implement Comparator, define compare() method and pass object of customComparator or Lambda expression to List.sort(myList, new customComparator())
 * where, myList<Integer>
 * So we can have a choice of deciding the order or sorting even though the class is not user defined
