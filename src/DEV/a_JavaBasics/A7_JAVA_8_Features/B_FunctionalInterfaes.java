@@ -1,5 +1,7 @@
 package DEV.a_JavaBasics.A7_JAVA_8_Features;
 
+import com.sun.security.jgss.GSSUtil;
+
 import java.util.function.*;
 
 /*
@@ -172,32 +174,83 @@ public class B_FunctionalInterfaes {
          * Built-in Functional Interfaces
          */
 
-        // Predicate<T>
-        // Input -> boolean
-        Predicate<Integer> isEven = n -> n % 2 == 0;
-        System.out.println(isEven.test(10));
+        // SYNTAX HELP FOR : Functional implementation using lambda expressions
+        // InterfaceName<Wrapper-Type> interfaceReference output_param(if any) = (input param) -> (operation on input paramemeter);
 
+        // USAGE :
+        // interfaceReference.InterfaceMethod(Input Parameter);
+
+        // Predicate<T> :
+        /*
+        Method : boolean test(T t)
+        Evaluates this predicate on the given argument.
+        Params: t – the input argument
+        Returns: true if the input argument matches the predicate, otherwise false
+        */
+        System.out.println("\nUsing Predicate<T> interface - implemented boolean test(T t) method ");
+        Predicate<Integer> isEven = n -> n % 2 == 0;
+        System.out.println("isEven.test(10)> "+isEven.test(10));
+
+        Predicate<String> isLongerThan5 = str -> str.length()>5;
+        System.out.println("isLongerThan5.test(\"Meghana\") > "+isLongerThan5.test("Meghana"));
+        System.out.println("isLongerThan5.test(\"Megh\") > "+isLongerThan5.test("Megh"));
 
         // Function<T, R>
-        // Input -> Output
+        /*
+        Method: R apply(T t)
+        Represents a function that accepts one argument and produces a result.
+        Params: t – the function argument
+        Returns: the function result
+        */
+        System.out.println("\nUsing Function<T, R> interface - implemented R apply(T t) method ");
         Function<String, Integer> length = str -> str.length();
-        System.out.println(length.apply("Java"));
+        System.out.println("length.apply(\"Java\") > "+length.apply("Java"));
+
+        class func implements Function<Integer,Integer>{
+            @Override
+            public Integer apply(Integer o) {
+                return o*o;
+            }
+        }
+        func squareOf = new func();
+        System.out.println("squareOf.apply(10)> "+squareOf.apply(10));
+
+        // OR A BETTER WAY LOOKS LIKE -- >
+
+        Function<Integer, Integer> squareIt = num -> num*num;
+        System.out.println("squareIt.apply(100) > "+squareIt.apply(100));
 
 
         // Consumer<T>
-        // Input -> No Output
-        Consumer<String> printer =
-                name -> System.out.println(name);
-
-        printer.accept("Rahul");
-
+        /*
+        Method: void accept(T t)
+        Represents an operation that accepts a single input argument and returns no result.
+        Params: t – the input argument
+        Returns: nothing
+        */
+        System.out.println("\nUsing Consumer<T> interface - implemented void accept(T t) method ");
+        Consumer<Integer> printer = num-> System.out.println(num);
+        System.out.print("printer.accept(100) > ");
+        printer.accept(100);
 
         // Supplier<T>
-        // No Input -> Output
-        Supplier<String> supplier =
-                () -> "Hello Java 8";
+        /*
+        Method: T get()
+        Represents a supplier of results.
+        Params: no parameter
+        Returns: a result
+        */
+        System.out.println("\nUsing Supplier<T> interface - implemented T get() method ");
+        // Below Supplier says, I supply Strings
+        Supplier<String> messageSupplier = () ->  "Hi there";
+        System.out.println("messageSupplier.get() > "+messageSupplier.get());
 
-        System.out.println(supplier.get());
+        /*
+        * PRACTICAL USAGE OF TESE FIs
+            Supplier  --> produces data
+            Consumer  --> consumes data
+
+        * */
     }
 }
 
@@ -207,21 +260,21 @@ public class B_FunctionalInterfaes {
 MOST IMPORTANT BUILT-IN FIs
 =================================================
 
-Predicate<T>
-------------
-Input -> boolean
+    Predicate<T>
+    ------------
+    Input -> boolean
 
-Function<T,R>
--------------
-Input -> Output
+    Function<T,R>
+    -------------
+    Input -> Output
 
-Consumer<T>
------------
-Input -> No Output
+    Consumer<T>
+    -----------
+    Input -> No Output
 
-Supplier<T>
------------
-No Input -> Output
+    Supplier<T>
+    -----------
+    No Input -> Output
 
 
 =================================================
