@@ -30,7 +30,7 @@ public class A0_GenericList<T> implements Iterable<T>{
                 System.out.println(x);
             }*/
         /*
-        * BECAUSE WE HAVE NOT IMPLEMENTED Iterable interface, so it is not yet ITERABLE
+        * BECAUSE WE HAVE NOT IMPLEMENTED Iterable interface, so the list is not yet ITERABLE
         * It makes the given class "Iterable" , meaning u can use a for loop on that class
         * Once you impl Iterable, you have to impl the method iterator(), which returns the Iterator object, this object is used to iterate over the collection
         * Ab yeh iterator object kaha se laaoge?
