@@ -33,7 +33,7 @@ public class JustNotes {
     * */
 
     /* L - Liskov Substitution Principle ******************** [DOES NOT NECESSARILY REQUIRE INHERITANCE, BTW]
-    * ---- PROBLEM LSP SOLVES : ""Can a child safely replace its parent?"
+    * ---- PROBLEM LSP SOLVES : ""Can a child safely replace its parent?"- child should not inherit a contract it can not fulfill
     * ---- LSP FOCUSES ON ----: Behavioral Correctness, It's about whether inheritance relationships make sense.
     * ---- "derived or child classes must be able to replace their base or parent classes without altering the correctness of the program."
     *
@@ -46,7 +46,6 @@ public class JustNotes {
     * ---- But it fails at runtime because the subclass cannot honor the behavioral contract of the parent.
     * ---- That's the textbook LSP violation.
     *
-    * Penguin isn't implementing an interface, it is extending from a class Bird which has a method fly() .
     * Penguin is inheriting behavior from a parent that doesn't fit it, "Penguin is inheriting a contract (fly()) that it cannot fulfill." - this is more LSP explaination
     *
     * WHEN SHOULD LSP ALARMS TRIGGER ??
