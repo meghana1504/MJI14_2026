@@ -1,10 +1,10 @@
-package DEV.a_JavaBasics.A7_JAVA_8_Features.C_DefaultAndStaticMethodsInInterface;
+package DEV.a_JavaBasics.A7_JAVA_8_Features;
 
-public class A_StaticDefaultDemo implements IDemo{
+public class C_StaticDefaultDemo implements IDemo{
     public static void main(String[] args) {
-        IDemo idemo = new A_StaticDefaultDemo();
+        IDemo idemo = new C_StaticDefaultDemo();
         idemo.display();
-        IDemo.show();
+        IDemo.show(); // Notice, static method is being called on interface reference
         idemo.demo();
     }
 
@@ -43,4 +43,9 @@ interface IDemo{
 *
 * -> Interface static methods must be called using the interface name:
 *
+* */
+
+/*
+1. Abstract classes can have instance variables however interface cannot
+2. Class can extend only from one abstract class, but a class can implement multiple interfaces.
 * */

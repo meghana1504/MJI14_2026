@@ -30,7 +30,7 @@ Syntax:
 or
 
     (parameter1, parameter2) -> {
-        statements;
+        multiple statements;
     }
 
 Key Points:

@@ -1,7 +1,4 @@
 package DEV.a_JavaBasics.A7_JAVA_8_Features;
-
-import com.sun.security.jgss.GSSUtil;
-
 import java.util.function.*;
 
 /*
@@ -19,7 +16,6 @@ JAVA 8 - FUNCTIONAL INTERFACES (FI)
     }
 
     A Functional Interface acts as the TARGET TYPE for a lambda expression.
-
 
 =================================================
 WHY DO WE NEED FUNCTIONAL INTERFACES?
@@ -118,7 +114,6 @@ Pattern:
 
     This is often called a callback.
 
-
 =================================================
 ISP (INTERFACE SEGREGATION PRINCIPLE)?
 =================================================
@@ -135,6 +130,12 @@ ISP (INTERFACE SEGREGATION PRINCIPLE)?
     Goal of Functional Interface:
     -----------------------------
         Represent one behavior that can be supplied and passed around.
+
+The historical timeline
+Java 1.0 (1995): Single-method interfaces like Runnable, Comparator, ActionListener, etc., were created to model simple capabilities and enable polymorphism.
+1998–2013: They were typically implemented using concrete classes or anonymous inner classes.
+Java 8 (2014): Lambda expressions were introduced, and these existing single-method interfaces became much more concise to implement.
+So, single-method interfaces were not invented for lambdas. Rather, lambdas were designed to work with an already common and useful pattern in Java: interfaces that represent a single operation or behavior.
 
 =================================================
 @FunctionalInterface
@@ -246,7 +247,7 @@ public class B_FunctionalInterfaes {
         System.out.println("messageSupplier.get() > "+messageSupplier.get());
 
         /*
-        * PRACTICAL USAGE OF TESE FIs
+        * PRACTICAL USAGE OF these FIs
             Supplier  --> produces data
             Consumer  --> consumes data
 
@@ -291,11 +292,9 @@ Interface's single abstract method.
 Relationship:
 
 Functional Interface = Contract
-
 Lambda = Implementation
 
 Together:
-
 Calculator calc = (a, b) -> a + b;
 
 Contract + Implementation
