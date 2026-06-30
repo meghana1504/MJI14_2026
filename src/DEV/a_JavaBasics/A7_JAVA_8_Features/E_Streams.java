@@ -137,6 +137,17 @@ HOW MANY TIMES CAN A STREAM BE USED?
 
     Trying to reuse it throws IllegalStateException
 
+STREAM HIERARCHY
+------------------------------------
+
+                            -----------> Stream
+                            -----------> IntStream
+Autoclosable-> BaseStream<T> -----------> LongStream
+                            -----------> DoubleStream
+
+This hierarchy makes sure the autoclosing of Streams
+because all kind of streams override the method close()
+
 ===============================================================================
                      DIFFERENT WAYS TO CREATE STREAMS
 ===============================================================================
@@ -719,6 +730,16 @@ public class E_Streams {
 
         System.out.println(primitiveSum);
 
+        /******************************************************************
+         *  CONVERSION FROM PRIMITIVE TO OBJECT STREAM AND VICE-A-VERSA
+         ******************************************************************/
+        System.out.println("CONVERSION FROM PRIMITIVE TO OBJECT STREAM AND VICE-A-VERSA");
+        Stream<Integer> s1 = Stream.of(1,2,3,4,5);
+        IntStream intS1 = s1.mapToInt(n->n);
+        Stream<Integer> s2 = intS1.boxed().peek(n-> System.out.print(n+" ")).map(num->num*num);
+        s2.forEach(n-> System.out.print(n+" "));
+
+
 
 
         /******************************************************************
@@ -932,5 +953,11 @@ public class E_Streams {
         noneMatch()
         */
 
+        /*
+        * SHORT CIRCUITING is enabled due to lazy evalution and vertical processing
+        * findFirst() hai for eg apna terminal op - findfirst() zalyavr baki elenments wont be procssed- similar to break statement in imperative code
+        * hence short circuiting boltaat
+        *
+        * */
     }
 }
